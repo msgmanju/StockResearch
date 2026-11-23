@@ -29,10 +29,10 @@ def _ensure_databases():
     direct_url = "https://github.com/msgmanju/StockResearch/releases/download/v1.0.0/data_bundle.zip"
     target_zip = DATA_DIR / "temp_bundle.zip"
 
-    with st.spinner("Setting up database bundle (first launch only, ~15-20s)..."):
-        # 1. Try direct download (works instantly if repo is public)
-        try:
-            r = requests.get(direct_url, stream=True, timeout=15)
+    # 1. Try direct public download (timeout 120s)
+    try:
+        with st.spinner("📥 Downloading historical database (~112 MB, one-time setup)..."):
+            r = requests.get(direct_url, stream=True, timeout=120)
             if r.status_code == 200:
                 with open(target_zip, "wb") as f:
                     for chunk in r.iter_content(chunk_size=1024 * 1024):
@@ -41,9 +41,12 @@ def _ensure_databases():
                 with zipfile.ZipFile(target_zip, "r") as z:
                     z.extractall(DATA_DIR)
                 target_zip.unlink(missing_ok=True)
-                return
-        except Exception:
-            pass
+                if TECH_DB.exists() and FUND_DB.exists():
+                    st.success("✅ Database initialized successfully!")
+                    st.rerun()
+                    return
+    except Exception:
+        pass
 
         # 2. If private repo, require GITHUB_TOKEN from secrets
         token = ""
