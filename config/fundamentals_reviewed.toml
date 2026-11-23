@@ -1,0 +1,356 @@
+# Fundamentals review items you have looked at and accepted.
+# Each entry turns matching NEEDS REVIEW items into REVIEWED (information only).
+#   ticker = stock, check = jumps / derived_q4 / coverage / yahoo
+#   dates  = report filed dates the item is listed under (leave out = every item of that check)
+#   note   = why it is fine
+
+[[reviewed]]
+ticker = "JCI"
+check = "jumps"
+dates = ["2016-11-23"]
+note = "Johnson Controls merged with Tyco (Sept 2016): first report after the merger"
+
+[[reviewed]]
+ticker = "KKR"
+check = "jumps"
+dates = ["2020-05-11", "2021-05-10"]
+note = "KKR's revenue includes investment gains/losses: negative in Q1 2020 (COVID), then Global Atlantic was added in 2021"
+
+# ---- real events (checked Nov 2026, calculation version 7)
+[[reviewed]]
+ticker = "BHF"
+check = "jumps"
+dates = ["2020-05-11", "2021-05-10", "2021-08-06"]
+note = "Brighthouse's revenue includes derivative gains/losses, which swing by billions"
+
+[[reviewed]]
+ticker = "BX"
+check = "jumps"
+dates = ["2021-05-07"]
+note = "Blackstone's performance revenue (carried interest) more than doubled in 2021"
+
+[[reviewed]]
+ticker = "CCL"
+check = "jumps"
+dates = ["2021-04-07", "2021-06-28", "2021-09-30", "2022-01-27"]
+note = "COVID: cruises suspended 2020-2021, then restarted"
+
+[[reviewed]]
+ticker = "RCL"
+check = "jumps"
+dates = ["2021-02-26", "2021-04-29", "2021-08-05", "2021-10-29", "2022-03-01"]
+note = "COVID: cruises suspended 2020-2021, then restarted"
+
+[[reviewed]]
+ticker = "NCLH"
+check = "jumps"
+dates = ["2021-02-26", "2021-05-10", "2021-11-09", "2022-03-01", "2022-08-09"]
+note = "COVID: cruises suspended 2020-2021, then restarted"
+
+[[reviewed]]
+ticker = "LYV"
+check = "jumps"
+dates = ["2021-03-01", "2021-05-06", "2021-11-04"]
+note = "COVID: live events stopped 2020-2021, then restarted"
+
+[[reviewed]]
+ticker = "CHK"
+check = "jumps"
+dates = ["2023-02-22"]
+note = "Chesapeake: no usable revenue in the reports after its 2021 bankruptcy; 2022 gas prices"
+
+[[reviewed]]
+ticker = "EXE"
+check = "jumps"
+dates = ["2023-02-22"]
+note = "Expand Energy (Chesapeake): see CHK"
+
+[[reviewed]]
+ticker = "DD"
+check = "jumps"
+dates = ["2019-10-31"]
+note = "DowDuPont spun off Dow and Corteva in 2019 (prior year restated to continuing business)"
+
+[[reviewed]]
+ticker = "DWDP"
+check = "jumps"
+dates = ["2019-10-31"]
+note = "DowDuPont spun off Dow and Corteva in 2019"
+
+[[reviewed]]
+ticker = "DINO"
+check = "jumps"
+dates = ["2018-02-21"]
+note = "HollyFrontier's 2016 annual report tagged only 69M as Revenues (company tagging error); 2017 report correct"
+
+[[reviewed]]
+ticker = "ECHO"
+check = "jumps"
+dates = ["2024-02-29"]
+note = "EchoStar merged with DISH Network (Dec 2023)"
+
+[[reviewed]]
+ticker = "ERIE"
+check = "jumps"
+dates = ["2016-02-25", "2016-07-28", "2017-02-23"]
+note = "Erie Indemnity stopped consolidating the Erie Insurance Exchange (2016)"
+
+[[reviewed]]
+ticker = "HWM"
+check = "jumps"
+dates = ["2020-08-10"]
+note = "Arconic split into Howmet and Arconic Corp (April 2020)"
+
+[[reviewed]]
+ticker = "INSM"
+check = "jumps"
+dates = ["2020-02-25"]
+note = "Insmed's first drug (Arikayce) launched late 2018 - growth from a tiny base"
+
+[[reviewed]]
+ticker = "JEF"
+check = "jumps"
+dates = ["2018-08-01"]
+note = "Leucadia became Jefferies Financial Group; businesses sold or moved to discontinued operations (2018)"
+
+[[reviewed]]
+ticker = "LCID"
+check = "jumps"
+dates = ["2022-05-05", "2022-08-03", "2022-11-08"]
+note = "Lucid started deliveries in late 2021 - growth from a tiny base"
+
+[[reviewed]]
+ticker = "RIVN"
+check = "jumps"
+dates = ["2022-11-09"]
+note = "Rivian started deliveries in late 2021 - growth from a tiny base"
+
+[[reviewed]]
+ticker = "MRNA"
+check = "jumps"
+dates = ["2020-08-06", "2020-10-30", "2021-02-26", "2021-05-06", "2021-08-05"]
+note = "Moderna's COVID vaccine sales from 2021"
+
+[[reviewed]]
+ticker = "MTCH"
+check = "jumps"
+dates = ["2021-02-25"]
+note = "Match Group separated from IAC (July 2020); IAC's other businesses removed"
+
+[[reviewed]]
+ticker = "NKTR"
+check = "jumps"
+dates = ["2019-03-01", "2019-08-09"]
+note = "Nektar's 2018 revenue included a one-off 1.85B upfront payment from Bristol-Myers"
+
+[[reviewed]]
+ticker = "TRI"
+check = "jumps"
+dates = ["2019-03-13"]
+note = "Thomson Reuters sold 55% of its Financial & Risk business (Refinitiv) in Oct 2018"
+
+[[reviewed]]
+ticker = "VICI"
+check = "jumps"
+dates = ["2018-11-01"]
+note = "VICI Properties was formed in Oct 2017 - first full year of rent"
+
+[[reviewed]]
+ticker = "YUM"
+check = "jumps"
+dates = ["2019-02-21"]
+note = "Yum spun off Yum China (Oct 2016) and refranchised; 2017 revenue not tagged, so compared with 2016"
+
+# ---- differences from Yahoo that are definitions or real one-offs (latest quarter only)
+[[reviewed]]
+ticker = "HLT"
+check = "yahoo"
+dates = ["2026-09-30"]
+note = "Yahoo leaves out cost reimbursements from owned/managed hotels; SEC total revenue includes them"
+
+[[reviewed]]
+ticker = "MAR"
+check = "yahoo"
+dates = ["2026-09-30"]
+note = "Yahoo leaves out cost reimbursements from owned/managed hotels; SEC total revenue includes them"
+
+[[reviewed]]
+ticker = "ICE"
+check = "yahoo"
+dates = ["2026-09-30"]
+note = "Yahoo shows revenue net of transaction-based expenses; SEC total revenue is gross"
+
+[[reviewed]]
+ticker = "NDAQ"
+check = "yahoo"
+dates = ["2026-09-30"]
+note = "Yahoo shows revenue net of transaction-based expenses; SEC total revenue is gross"
+
+[[reviewed]]
+ticker = "GPN"
+check = "yahoo"
+dates = ["2026-09-30"]
+note = "Global Payments reported a 1.8B GAAP loss in Q1 2026 (Worldpay deal); Yahoo's EPS differs"
+
+[[reviewed]]
+ticker = "FDX"
+check = "yahoo"
+dates = ["2026-09-30"]
+note = "FedEx changed its fiscal year (transition period Jun-Sep 2026) and booked a gain on the FedEx Freight spin-off"
+
+# ---- added after the version 7 run (Nov 2026)
+[[reviewed]]
+ticker = "EXC"
+check = "jumps"
+dates = ["2022-05-09"]
+note = "Exelon spun off Constellation Energy (Feb 2022)"
+
+[[reviewed]]
+ticker = "ALK"
+check = "jumps"
+dates = ["2021-02-26"]
+note = "COVID: 2020 airline revenue fell by more than half"
+
+[[reviewed]]
+ticker = "AIV"
+check = "jumps"
+dates = ["2021-03-12"]
+note = "Aimco split into Aimco and AIR Communities (Dec 2020); AIR kept most of the apartments"
+
+[[reviewed]]
+ticker = "NTES"
+check = "jumps"
+dates = ["2017-04-21"]
+note = "NetEase files yearly; compared with 2014 (no report in between in the window) - real growth"
+
+[[reviewed]]
+ticker = "PDD"
+check = "jumps"
+dates = ["2020-04-24"]
+note = "Pinduoduo revenue 13.1B CNY (2018) to 30.1B CNY (2019)"
+
+[[reviewed]]
+ticker = "TCOM"
+check = "jumps"
+dates = ["2024-04-29"]
+note = "Trip.com revenue 20.0B CNY (2022, COVID) to 44.5B CNY (2023)"
+
+[[reviewed]]
+ticker = "REG"
+check = "jumps"
+dates = ["2019-02-21"]
+note = "Compared with a 2014 figure (no revenue tagged in between); Regency merged with Equity One in 2017"
+
+[[reviewed]]
+ticker = "MAA"
+check = "jumps"
+dates = ["2020-02-20"]
+note = "Compared with a 2014 figure (no revenue tagged in between); MAA merged with Post Properties in 2016"
+
+[[reviewed]]
+ticker = "TMUS"
+check = "jumps"
+dates = ["2013-11-07"]
+note = "T-Mobile USA merged with MetroPCS (May 2013)"
+
+[[reviewed]]
+ticker = "TTWO"
+check = "jumps"
+dates = ["2014-02-04", "2015-02-06"]
+note = "Grand Theft Auto V launched Sept 2013 - one exceptional year"
+
+[[reviewed]]
+ticker = "LMCA"
+check = "jumps"
+dates = ["2024-11-12"]
+note = "Liberty Media split off its SiriusXM stake (Sept 2024)"
+
+[[reviewed]]
+ticker = "APTV"
+check = "yahoo"
+dates = ["2026-09-30"]
+note = "Our TTM is restated for the business Aptiv separated in 2026 (continuing operations); Yahoo still shows the old total"
+
+[[reviewed]]
+ticker = "SPGI"
+check = "yahoo"
+dates = ["2026-09-30"]
+note = "Our TTM leaves out S&P Global Mobility (spun off 2026, discontinued operations); Yahoo still includes it"
+
+[[reviewed]]
+ticker = "IFF"
+check = "yahoo"
+dates = ["2026-09-30"]
+note = "Our TTM leaves out businesses IFF sold (discontinued operations); Yahoo still includes them"
+
+[[reviewed]]
+ticker = "MO"
+check = "yahoo"
+dates = ["2026-09-30"]
+note = "Yahoo shows revenues net of excise taxes; SEC tag is Altria's net revenues"
+
+# ---- coverage gaps that are real (company did not exist yet, or files only yearly)
+[[reviewed]]
+ticker = "ARM"
+check = "coverage"
+note = "Foreign filer (20-F yearly) listed Sept 2023"
+
+[[reviewed]]
+ticker = "CSRA"
+check = "coverage"
+note = "CSRA was spun off from CSC in Nov 2015 - no reports before"
+
+[[reviewed]]
+ticker = "EVRG"
+check = "coverage"
+note = "Evergy was formed in June 2018 (Westar + Great Plains) - no reports before"
+
+[[reviewed]]
+ticker = "FTI"
+check = "coverage"
+note = "TechnipFMC was formed in Jan 2017 - no reports before"
+
+[[reviewed]]
+ticker = "NBIS"
+check = "coverage"
+note = "Foreign filer (20-F yearly)"
+
+[[reviewed]]
+ticker = "SW"
+check = "coverage"
+note = "Smurfit Westrock was formed in July 2024 - no reports before"
+
+[[reviewed]]
+ticker = "VOD"
+check = "coverage"
+note = "Foreign filer (20-F yearly)"
+
+[[reviewed]]
+ticker = "VTRS"
+check = "coverage"
+note = "Viatris was formed in Nov 2020 (Mylan + Upjohn) - no reports before"
+
+# ---- added after the version 8 run (Nov 2026)
+[[reviewed]]
+ticker = "MUR"
+check = "jumps"
+dates = ["2013-11-06", "2014-02-28"]
+note = "Murphy Oil spun off Murphy USA (Aug 2013) - retail fuel revenue removed"
+
+[[reviewed]]
+ticker = "LLL"
+check = "coverage"
+dates = ["2016-03-31"]
+note = "SEC company facts have no L3 reports for Mar 2016 - Jan 2017 (old fundamentals carried for those months)"
+
+[[reviewed]]
+ticker = "LM"
+check = "coverage"
+dates = ["2016-03-31"]
+note = "SEC company facts have no Legg Mason reports for Mar - Nov 2016"
+
+[[reviewed]]
+ticker = "MAA"
+check = "coverage"
+dates = ["2016-03-31"]
+note = "SEC company facts have no usable MAA reports for Mar 2016 - Jul 2019"

@@ -1,0 +1,83 @@
+# StockResearch settings. Edit values here, not in the code.
+
+[history]
+# First date to download. Starts a year before the 10-year window so the
+# 52-week low/high/average are complete from the first day of the window.
+start_date = "2015-11-01"
+# Each update re-downloads this many calendar days before the last stored
+# date, so late corrections from the data source are picked up.
+overlap_days = 7
+
+[paths]
+# Relative to the StockResearch folder.
+data_dir = "data"
+raw_dir = "data/raw"
+logs_dir = "logs"
+exports_dir = "exports"
+tickers_file = "tickers.txt"
+
+[sources]
+prices_primary = "yahoo"
+prices_backup = ""          # e.g. "gurufocus" once you add an API token
+fundamentals_primary = "edgar"
+
+[market]
+# Daily bars are only stored once the US market day is over (New York time).
+timezone = "America/New_York"
+day_complete_hour = 17
+
+[edgar]
+# SEC asks for a contact email in every request. Fill in before step 5.
+contact_email = "msg_manju@yahoo.com"
+
+[audit]
+# Independent price sources used only for checking Yahoo.
+# tiingo: full history (key in config/secrets.toml); nasdaq: last ~1 year.
+# stooq is left out: it now blocks automated downloads.
+second_sources = ["tiingo", "nasdaq"]
+compare_tolerance_pct = 0.5       # price difference that counts as a mismatch
+volume_tolerance_pct = 5.0        # volume difference (reported, not a failure)
+adj_close_tolerance_pct = 0.1     # adj_close vs our own dividend recalculation
+big_move_pct = 15.0               # one-day moves above this are listed for review
+split_day_max_move_pct = 20.0     # a bigger move on a split day means bad adjustment
+stale_days = 5                    # close unchanged this many days in a row = suspicious
+bad_tick_pct = 5.0                # a high/low this far outside the day's open/close is a bad tick
+min_days = 252                    # less history than this (one year) blocks the stock
+max_issues_per_check = 200        # cap on items listed per check
+# Tie rule for Yahoo-vs-Tiingo disagreements with no third source (only when a stock has at most
+# tie_max_items of them - more points to a systematic problem, which stays open):
+#   high/low: ours kept if Tiingo's value moves the 52-week/6-month value by <= tie_minor_pct,
+#             otherwise the LESS extreme of the two is kept (closer to the day's open/close)
+#   close   : ours kept if within tie_minor_pct, otherwise the close nearer the previous close
+#             (gaps above bad_tick_pct always stay open for review)
+tie_minor_pct = 1.0
+tie_max_items = 5
+
+[support_resistance]
+# Same method as the stock screener.
+pivot_window = 5        # a swing high/low is the highest/lowest within +/- this many days
+cluster_pct = 0.02      # swing points within 2% of each other form one level
+lookback = 252          # trading days of history used for each day's levels
+band_pct = 0.005        # a level must be at least 0.5% below/above the price
+fallback_6m = 126       # support falls back to the 6-month low when no level exists
+
+[membership]
+# Membership is rebuilt from today back to this date.
+start_date = "2015-11-01"
+# First day a backtest can trade (first day with complete 52-week values).
+# Change history must reach back at least to here.
+backtest_start = "2016-11-01"
+# Allowed number of tickers in each index on any day (two share classes count twice).
+ndx_min = 100
+ndx_max = 107
+sp500_min = 500
+sp500_max = 506
+# S&P 100: 101 today (Alphabet's two share classes); 100-102 allowed
+sp100_min = 100
+sp100_max = 102
+
+[tiingo]
+# Tiingo plan limits. Free plan: 50 an hour (and 500 different stocks a month).
+# Power plan: 10,000 an hour, 100,000 a day - set slightly lower for safety.
+requests_per_hour = 9000
+max_tickers_per_run = 2000

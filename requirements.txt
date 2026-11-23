@@ -1,0 +1,8 @@
+duckdb
+pandas
+yfinance
+requests
+openpyxl
+lxml
+streamlit
+exchange_calendars

@@ -1,0 +1,70 @@
+# Audit items you have checked and confirmed are correct.
+# Confirmed items stop counting as warnings/failures in future audits
+# (they are still listed in the Excel file, marked REVIEWED).
+# Add one block per item: ticker, date, check (as shown in the report), and a note.
+
+[[reviewed]]
+ticker = "AAPL"
+date = 2025-04-09
+check = "big_moves"
+note = "+15.3% - market-wide rally when US tariffs were paused"
+
+[[reviewed]]
+ticker = "GRAL"
+date = 2024-06-28
+check = "etf_mismatch"
+note = "GRAIL spin-off from Illumina (Jun 24, 2024), held briefly by QQQ; not in Wikipedia history; under 1 year of history so never selectable - ignored"
+
+[[reviewed]]
+ticker = "RAL"
+date = 2025-06-30
+check = "etf_mismatch"
+note = "Ralliant spin-off from Fortive completed Jun 30 2025; S&P sent it to the SmallCap 600 from Jul 1 (S&P DJI press release Jun 25 2025). SPY held the distributed shares on the quarter-end only."
+
+
+# ---- Date ranges: date_from / date_to cover every item of the listed check(s) in the range.
+
+[[reviewed]]
+ticker = "FRC"
+date_from = 2023-03-01
+date_to = 2024-12-31
+check = ["big_moves", "repeated_days"]
+note = "First Republic Bank collapse (Mar 2023), seized May 1 2023; afterwards penny trading over the counter as FRCB - real prices"
+
+[[reviewed]]
+ticker = "SBNY"
+date_from = 2023-03-10
+date_to = 2024-12-31
+check = ["big_moves", "repeated_days"]
+note = "Signature Bank seized Mar 12 2023; afterwards penny trading over the counter - real prices"
+
+[[reviewed]]
+ticker = "SIVB"
+date_from = 2023-03-09
+date_to = 2024-12-31
+check = ["big_moves", "repeated_days"]
+note = "SVB Financial collapse, bank seized Mar 10 2023; afterwards penny trading over the counter - real prices"
+
+[[reviewed]]
+ticker = "HONA"
+date = 2026-06-16
+check = "big_moves"
+note = "confirmed as a real move by the user (Nov 2026 audit review)"
+
+[[reviewed]]
+ticker = "MNK"
+date = 2018-02-27
+check = "big_moves"
+note = "confirmed as a real move by the user (Nov 2026 audit review)"
+
+[[reviewed]]
+ticker = "SNDK"
+date = 2025-02-18
+check = "big_moves"
+note = "confirmed as a real move by the user (Nov 2026 audit review)"
+
+[[reviewed]]
+ticker = "VNT"
+date = 2020-10-09
+check = "big_moves"
+note = "Vontier's first regular-way trading day after the Fortive spin-off; the drop is measured from the when-issued price - real"

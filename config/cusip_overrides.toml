@@ -1,0 +1,155 @@
+# Manual CUSIP (or ISIN, for foreign companies) -> ticker fixes for ETF holdings that OpenFIGI can't map (or maps wrongly).
+# The ETF cross-check report lists any holding it couldn't match, with its CUSIP and name.
+#
+# [[cusip]]
+# cusip = "123456789"
+# ticker = "XYZ"
+# note = "why"
+
+# Old CUSIPs replaced at a rename; OpenFIGI no longer lists a US ticker for them.
+[[cusip]]
+cusip = "871503108"
+ticker = "SYMC"
+note = "Symantec Corp. -> NortonLifeLock (NLOK) Nov 5 2019 (new CUSIP) -> Gen Digital (GEN) Nov 8 2022"
+
+[[cusip]]
+cusip = "22943F100"
+ticker = "CTRP"
+note = "Ctrip.com International ADR -> Trip.com Group (TCOM) Nov 5 2019 (new CUSIP 89677Q107)"
+
+[[cusip]]
+cusip = "812578102"
+ticker = "SGEN"
+note = "Seattle Genetics, Inc. -> renamed Seagen Inc. in 2020 (new CUSIP 81181C104), ticker SGEN unchanged"
+
+# S&P 500 (SPY check, Nov 2026). Old IDs from SPY's filings -> the ticker our history uses.
+
+[[cusip]]
+cusip = "037411105"
+ticker = "APA"
+note = "Apache Corp -> APA Corp holding company (Mar 2021, new CUSIP 03743Q108); history uses APA"
+
+[[cusip]]
+cusip = "03748R754"
+ticker = "AIV"
+note = "Apartment Investment & Management (Aimco), pre-Dec-2020 separation CUSIP"
+
+[[cusip]]
+cusip = "054937107"
+ticker = "TFC"
+note = "BB&T Corp -> Truist Financial (TFC) Dec 2019"
+
+[[cusip]]
+cusip = "124857202"
+ticker = "SKYD"
+note = "CBS Corp -> ViacomCBS (Dec 2019) -> Paramount Global -> Paramount Skydance -> Skydance (SKYD, Oct 2026)"
+
+[[cusip]]
+cusip = "92556H206"
+ticker = "SKYD"
+note = "ViacomCBS / Paramount Global -> Paramount Skydance (Aug 2025) -> Skydance (SKYD, Oct 2026)"
+
+[[cusip]]
+cusip = "156700106"
+ticker = "LUMN"
+note = "CenturyLink -> Lumen Technologies (LUMN) Sep 2020"
+
+[[cusip]]
+cusip = "339041105"
+ticker = "FLT"
+note = "FleetCor Technologies -> Corpay (CPAY) Mar 25 2024, new CUSIP 219948106"
+
+[[cusip]]
+cusip = "369604103"
+ticker = "GE"
+note = "General Electric, CUSIP before the Aug 2021 reverse split (new 369604301)"
+
+[[cusip]]
+cusip = "40414L109"
+ticker = "DOC"
+note = "HCP Inc -> Healthpeak (PEAK) Nov 2019 -> ticker DOC Mar 2024; history uses DOC"
+
+[[cusip]]
+cusip = "438516106"
+ticker = "HON"
+note = "Honeywell International, CUSIP before the 2026 reorganisation (new 438516205)"
+
+[[cusip]]
+cusip = "IE00B6330302"
+ticker = "TT"
+note = "Ingersoll-Rand plc -> Trane Technologies (TT) Mar 2020"
+
+[[cusip]]
+cusip = "469814107"
+ticker = "J"
+note = "Jacobs Engineering Group -> Jacobs Solutions (holding co, Aug 2022)"
+
+[[cusip]]
+cusip = "487836108"
+ticker = "K"
+note = "Kellogg Co -> Kellanova (Oct 2023), ticker K unchanged"
+
+[[cusip]]
+cusip = "501797104"
+ticker = "BBWI"
+note = "L Brands -> Bath & Body Works (BBWI) Aug 2021"
+
+[[cusip]]
+cusip = "50540R409"
+ticker = "LH"
+note = "Laboratory Corp of America Holdings -> Labcorp Holdings (holding co, May 2024)"
+
+[[cusip]]
+cusip = "NL0011031208"
+ticker = "VTRS"
+note = "Mylan N.V. -> Viatris (VTRS) Nov 2020; history uses VTRS"
+
+[[cusip]]
+cusip = "637071101"
+ticker = "NOV"
+note = "National Oilwell Varco -> NOV Inc. (2021), ticker NOV"
+
+[[cusip]]
+cusip = "913017109"
+ticker = "RTX"
+note = "United Technologies -> Raytheon Technologies (RTX) Apr 3 2020"
+
+[[cusip]]
+cusip = "96145D105"
+ticker = "WRK"
+note = "WestRock (WRK) until Jul 5 2024; Smurfit Westrock (SW) from Jul 8 2024 is stored separately (membership_splits.toml) because SW's earlier price history is not WestRock's"
+
+[[cusip]]
+cusip = "JE00BJ1F3079"
+ticker = "AMCR"
+note = "Amcor plc (Jersey) ISIN; foreign company filed without a CUSIP"
+
+[[cusip]]
+cusip = "GB00B5BT0K07"
+ticker = "AON"
+note = "Aon plc (UK) ISIN, before the 2020 move to Ireland (IE00BLP1HW54)"
+
+[[cusip]]
+cusip = "25470F104"
+ticker = "DISCA"
+note = "Discovery Inc. Series A (OpenFIGI returns DISCK for it); renamed WBD Apr 11 2022"
+
+[[cusip]]
+cusip = "15677J108"
+ticker = "DAY"
+note = "Ceridian HCM (CDAY) -> Dayforce (DAY) Feb 1 2024, CUSIP unchanged; delisted 2026 (taken private)"
+
+[[cusip]]
+cusip = "03965L100"
+ticker = "HWM"
+note = "Arconic Inc. -> renamed Howmet Aerospace (HWM) Apr 1 2020"
+
+[[cusip]]
+cusip = "G5480U104"
+ticker = "LBTYA"
+note = "Liberty Global Class A (name matching alone can't tell Class A from Class C)"
+
+[[cusip]]
+cusip = "G5480U120"
+ticker = "LBTYK"
+note = "Liberty Global Class C (Nasdaq ticker LBTYK)"

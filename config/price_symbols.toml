@@ -1,0 +1,56 @@
+# Other symbols to try for a stock's PRICES when its own ticker gives no data - usually the
+# over-the-counter symbol a company traded under after delisting or bankruptcy. Each is only kept
+# if it covers the stock's index days (checked automatically).
+[[symbol]]
+ticker = "FRC"
+try = ["FRCB"]
+note = "First Republic Bank: traded OTC as FRCB after the May 2023 seizure"
+
+[[symbol]]
+ticker = "ENDP"
+try = ["ENDPQ"]
+note = "Endo International: OTC ENDPQ during bankruptcy"
+
+[[symbol]]
+ticker = "MNK"
+try = ["MNKKQ", "MNKTQ"]
+note = "Mallinckrodt: OTC symbols during bankruptcy"
+
+[[symbol]]
+ticker = "FTR"
+try = ["FTRCQ"]
+note = "Frontier Communications (old company): OTC FTRCQ during bankruptcy"
+
+[[symbol]]
+ticker = "BBBY"
+try = ["BBBYQ"]
+note = "Bed Bath & Beyond: OTC BBBYQ during bankruptcy (BBBY was later reused)"
+
+[[symbol]]
+ticker = "QVCGA"
+try = ["QVCAQ"]
+note = "QVC Group (formerly Qurate QRTEA): OTC QVCAQ from Apr 24 2026"
+
+[[symbol]]
+ticker = "DD-OLD"
+try = ["DD"]
+note = "E.I. du Pont de Nemours before the Sep 2017 DowDuPont merger: Tiingo's DD history (Yahoo's DD history before 2017 is a different company)"
+
+# ---- Other per-stock rules
+#   source = "tiingo"   always take this stock's prices from Tiingo (Yahoo's history is wrong)
+#   first_date = ...    drop prices before this date (e.g. thin over-the-counter prints before a US listing)
+
+[[symbol]]
+ticker = "XRX"
+source = "tiingo"
+note = "Yahoo records the Conduent spin-off (Jan 3 2017) as a 1.518 'split', putting a false +19.8% jump in the history; Tiingo has the correct actions"
+
+[[symbol]]
+ticker = "DD"
+source = "tiingo"
+note = "Yahoo's Jun 3 2019 factor (0.4725) mixes the 1-for-3 reverse split with the Corteva spin-off, putting a false +17.8% jump in the history; Tiingo has the 1-for-3 split"
+
+[[symbol]]
+ticker = "AMCR"
+first_date = 2019-06-11
+note = "Amcor listed on the NYSE on Jun 11 2019; Yahoo's earlier AMCR rows are thin over-the-counter prints near $45-49 (volume 0-100), not comparable with the ~$10 NYSE price"

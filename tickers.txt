@@ -1,0 +1,18 @@
+# One ticker per line (Yahoo format, e.g. BRK-B). Lines starting with # are ignored.
+# Step 5 trial: AAPL plus 10 stocks chosen to test tricky cases.
+AAPL
+NVDA    # two splits (2021 4:1, 2024 10:1)
+GOOGL   # 20:1 split 2022
+TSLA    # two splits (2020 5:1, 2022 3:1)
+META    # ticker changed from FB in 2022
+BRK-B   # dash in ticker
+ASML    # foreign company
+JPM     # bank
+APP     # short history (listed 2021)
+ATVI    # delisted 2023 (bought by Microsoft) - expect no Yahoo data
+QQQ     # NASDAQ-100 ETF - needed for the bear-year check
+SGOV    # 0-3 month T-bills - backtest option: idle money while QQQ is below its 200-day average
+BIL     # 1-3 month T-bills - stands in for SGOV before May 2020
+VOO     # S&P 500 ETF - for comparing idle money in VOO instead of QQQ
+DIA     # Dow Jones ETF - Screener "Market at a glance"
+IWM     # Russell 2000 ETF - Screener "Market at a glance"

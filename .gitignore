@@ -1,0 +1,11 @@
+data/
+.venv/
+exports/
+logs/
+versions/
+config/secrets.toml
+__pycache__/
+*.pyc
+.DS_Store
+.agents/
+.claude/

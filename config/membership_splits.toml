@@ -1,0 +1,52 @@
+# One ticker used by two DIFFERENT companies while in the index, where the change history doesn't
+# show it. The part of the period before 'before' is stored under old_ticker (the earlier company's
+# own price history), the rest stays under 'ticker'. Add one block per case, with its source.
+
+# NASDAQ-100: Fox Corp (FOXA/FOX) replaced 21st Century Fox on Mar 19, 2019. 21st Century Fox's
+# tickers became TFCFA/TFCF that day (S&P DJI release Mar 14 2019); Wikipedia's NDX table writes
+# them as "TCFCA/TCFCB", so the change was not picked up.
+[[split]]
+index = "NDX"
+ticker = "FOXA"
+before = 2019-03-19
+old_ticker = "TFCFA"
+old_company = "21st Century Fox Class A"
+
+[[split]]
+index = "NDX"
+ticker = "FOX"
+before = 2019-03-19
+old_ticker = "TFCF"
+old_company = "21st Century Fox Class B"
+
+# S&P 500: "DOW" before Sep 2017 was Dow Chemical (merged into DowDuPont Sep 1, 2017); "DOW" from
+# Apr 2, 2019 is Dow Inc. Dow Chemical's prices are stored separately as DOW-OLD.
+[[split]]
+index = "SP500"
+ticker = "DOW"
+before = 2019-04-02
+old_ticker = "DOW-OLD"
+old_company = "Dow Chemical"
+
+# S&P 500: WestRock (WRK) until Jul 5 2024, Smurfit Westrock (SW) from Jul 8 2024 (S&P treated
+# WestRock as the surviving entity, so Wikipedia shows one continuous SW period). Yahoo's SW history
+# before Jul 2024 is not WestRock - SPY's quarter-end prices differed by up to 21% - so WestRock's
+# own prices are stored as WRK. Source: Smurfit Westrock Q2 2024 results (listed and joined the
+# S&P 500 on Jul 8, 2024).
+[[split]]
+index = "SP500"
+ticker = "SW"
+before = 2024-07-08
+old_ticker = "WRK"
+old_company = "WestRock"
+
+# S&P 500: "DD" until Aug 31 2017 was E.I. du Pont de Nemours (merged into DowDuPont, DWDP, on
+# Sep 1 2017); "DD" from Jun 3 2019 is DuPont de Nemours (DowDuPont renamed). Yahoo's DD history
+# before 2017 is not E.I. du Pont's (it differs from Tiingo's DD by a changing 19-25%), so the old
+# company is stored as DD-OLD with Tiingo's DD prices (config/price_symbols.toml).
+[[split]]
+index = "SP500"
+ticker = "DD"
+before = 2019-06-03
+old_ticker = "DD-OLD"
+old_company = "E.I. du Pont de Nemours"

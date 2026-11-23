@@ -1,0 +1,12 @@
+# Manual price corrections (see docs/AUDIT_PROCEDURE.md, section 6).
+# Add one block per wrong value found during a review. Applied after every download.
+# field: open, high, low, close or volume. Prices are split-adjusted (as stored).
+#
+# Example:
+# [[correction]]
+# ticker = "XYZ"
+# date = 2019-03-14
+# field = "low"
+# value = 41.25
+# source = "Nasdaq.com historical data"
+# note = "Yahoo low was a bad tick (21.30)"

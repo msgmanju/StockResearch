@@ -1,0 +1,72 @@
+# S&P 100 change dates you have confirmed (e.g. from an S&P Dow Jones Indices press release).
+# The S&P 100 build dates most changes itself (see docs/MEMBERSHIP_PROCEDURE.md, 'S&P 100'):
+# the day a stock joined/left the S&P 500, or the quarterly rebalance. Use this file when the
+# report says a date is uncertain (sp100_dates) or REVIEW.
+# 'date' follows the usual rule: add = first day in the index; remove = first day NOT in the index.
+#
+# [[change]]
+# ticker = "GEV"
+# action = "add"
+# date = 2024-04-02
+# note = "joined with the GE Vernova spin-off (S&P press release Mar 2024)"
+
+# Mid-quarter replacements confirmed from S&P Dow Jones Indices press releases (press.spglobal.com):
+[[change]]
+ticker = "KHC"
+action = "add"
+date = 2016-09-08
+note = "replaced EMC after the close of Sep 7, 2016 (S&P DJI release Aug 31, 2016)"
+
+[[change]]
+ticker = "NFLX"
+action = "add"
+date = 2018-06-07
+note = "replaced Monsanto before the open of Jun 7, 2018 (S&P DJI release Jun 4, 2018)"
+
+[[change]]
+ticker = "ADBE"
+action = "add"
+date = 2019-03-20
+note = "replaced Twenty-First Century Fox (both share lines) before the open of Mar 20, 2019 (S&P DJI release Mar 14, 2019)"
+
+[[change]]
+ticker = "DOW"
+action = "add"
+date = 2019-04-02
+note = "Dow Inc. spin-off joined before the open of Apr 2, 2019 (S&P DJI release Mar 26, 2019)"
+
+[[change]]
+ticker = "HAL"
+action = "remove"
+date = 2019-04-03
+note = "removed before the open of Apr 3, 2019, replaced by Dow Inc. (S&P DJI release Mar 26, 2019)"
+
+[[change]]
+ticker = "AMT"
+action = "add"
+date = 2020-04-06
+note = "replaced Raytheon before the open of Apr 6, 2020 (S&P DJI release Mar 31, 2020)"
+
+[[change]]
+ticker = "CRM"
+action = "add"
+date = 2020-05-12
+note = "replaced Allergan before the open of May 12, 2020 (S&P DJI release May 6, 2020)"
+
+# Old tickers on Wikipedia's S&P 100 page -> the ticker our S&P 500 history uses, until the date it changed.
+[[ticker_alias]]
+old = "UTX"
+new = "RTX"
+until = 2020-04-03
+note = "United Technologies became Raytheon Technologies (RTX) on Apr 3, 2020"
+
+[[ticker_alias]]
+old = "PCLN"
+new = "BKNG"
+until = 2018-02-27
+note = "Priceline Group renamed Booking Holdings (BKNG) on Feb 27, 2018"
+
+# Company names in OEF's reports that the build cannot match by itself (add when the report asks):
+# [[name_alias]]
+# name = "Some Old Name Inc."
+# ticker = "XYZ"

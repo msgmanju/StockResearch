@@ -1,0 +1,88 @@
+# Strategy rules used by the screener and the trade check (src/strategy/engine.py).
+# Names (Nov 22, 2026): [dip_buyer] = Dip Buyer (Version 1, was mr_v3), [support_buyer] = Support Buyer (was
+# sr_v1 / "strategy 2"), [bigcap_dip_buyer] = Big-Cap Dip Buyer (was mr_top30 / "strategy 3"). The old keys still
+# work everywhere (src/strategy/engine.py OLD_KEYS), so old commands and saved runs keep working.
+# These are YOUR rules - change a number here only if you change the strategy itself.
+
+[dip_buyer]
+name = "Dip Buyer - buy near the 52-week low (original)"
+universe = "NDX"                 # NDX, SP500 or BOTH - index membership on the screen date
+# Buy price = 0.70 x 52-week low + 0.30 x 52-week average close (prior 252 sessions, the day itself excluded)
+buy_low_weight = 0.70
+buy_avg_weight = 0.30
+hl_max = 3.0                     # volatility filter: 52-week high / 52-week low above this = excluded
+max_positions = 30               # top 30 by discount score (52-week low / buy price, lowest first)
+# Exits - first one hit wins
+take_profit_pct = 100            # +100% (default; the trade check lets you set your own)
+stop_normal_pct = 18             # -18% in a normal market
+stop_bear_pct = 30               # -30% when QQQ is in a bear market on the buy date
+bear_drawdown_pct = 12           # QQQ close at least this % below its peak = bear market
+regime_ticker = "QQQ"
+# How the bear market is decided for a trade bought on day D:
+#   "ytd"   - QQQ close on D vs its highest high so far in D's calendar year (known on D)
+#   "52w"   - QQQ close on D vs its highest high of the last 252 sessions (your thinkorswim study)
+#   "years" - fixed list of bear years from the original backtest (whole year; uses hindsight)
+regime_method = "years"          # your choice (Nov 2026): the backtest's bear years
+bear_years = [2018, 2020, 2022, 2025, 2026]   # add a year here when you decide it is a bear year
+hold_days = 365                  # time exit: close of the first session on or after buy date + 365 days
+crash_ratio = 0.55               # take-profit and stop on the same day: 52w low / 52w avg below this = stop first
+
+[support_buyer]
+# Strategy 2 (Nov 2026) - experiment. Version 1 above stays unchanged.
+name = "Support Buyer - buy at the nearest support level"
+kind = "support_resistance"
+universe = "NDX"                 # same as v1
+# Buy: the day's low touches SUPPORT (nearest support level known before the open; sr_daily) -> bought at
+#      support (at the open if it opened below).
+# Which first when slots are short (rank_by): "near_52w" = support closest to the 52-week low or 52-week
+# average close (prior 252 sessions); "touches" = strongest support (most touches; the first version).
+rank_by = "near_52w"
+near_pct = 5                     # only supports within 5% of the 52w low or average (0 = no limit, just priority)
+hl_max = 3.0                     # same volatility filter as v1
+max_positions = 30               # 30 positions, equal amounts, gains reinvested (backtest sizing "equity")
+# Sell: fixed take-profit % from the buy price (choose 20-100% in the app), stop, or 1-year time exit
+sell = "take_profit"             # "resistance" = the first experiment (sell at resistance)
+take_profit_pct = 20
+min_upside_pct = 0               # only used when sell = "resistance"
+stop_normal_pct = 18             # same stop rules as v1 (backtest default: -30% fixed, adjustable)
+stop_bear_pct = 30
+bear_drawdown_pct = 12
+regime_ticker = "QQQ"
+regime_method = "years"
+bear_years = [2018, 2020, 2022, 2025, 2026]
+hold_days = 365                  # 1-year time exit, same as v1
+crash_ratio = 0.55               # take-profit and stop on the same day: same tie rule as v1
+
+[bigcap_dip_buyer]
+# Strategy 3 (Nov 2026) - experiment: Version 1's rules, but only the largest companies, idle money in QQQ.
+# Dip Buyer and Support Buyer stay unchanged. Same settings as [dip_buyer] plus the three at the end.
+name = "Big-Cap Dip Buyer - Dip Buyer on the largest companies, spare cash in QQQ"
+universe = "BOTH"                # the largest companies of the S&P 500 AND the NASDAQ-100 (Nov 22, 2026)
+buy_low_weight = 0.70
+buy_avg_weight = 0.30
+hl_max = 3.0
+max_positions = 10               # final settings (Nov 22, 2026): 10 stocks at a time
+take_profit_pct = 20             # final settings: +20% take-profit
+stop_normal_pct = 18
+stop_bear_pct = 30
+bear_drawdown_pct = 12
+regime_ticker = "QQQ"
+regime_method = "years"
+bear_years = [2018, 2020, 2022, 2025, 2026]
+hold_days = 365
+crash_ratio = 0.55
+# Only companies ranked 1..top_n_mcap by market cap among the index members that day (point in time:
+# close x shares known before the day - src/calculate/market_cap_history.py). Share classes = one company.
+top_n_mcap = 30
+# Money not in stocks is held in QQQ (backtest): earns QQQ's return incl. dividends; switches cost cost_pct.
+cash_in_qqq = true
+# Sell a holding when its company falls out of the top N (false = keep it until a normal exit).
+sell_if_out_of_top = false
+# "none" = idle money in QQQ always; "sgov_below_200" = in SGOV (T-bills) while QQQ is below its 200-day average
+idle_switch = "none"
+# App defaults for this strategy (final settings, Nov 22, 2026): debt/equity at most 0.6, revenue growth (last 12
+# months vs the 12 before) at least 5%, no P/E limit. Backtest 2017-01-03 to 2026-11-13 with -30% stop, 1-year time
+# exit, idle money in QQQ: $50,000 -> $362,741, 22.3% a year, worst fall -36.6% (QQQ with dividends: 20.1%, -35.6%).
+de_max = 0.6
+rev_growth_min = 5.0
+use_pe_limit = false

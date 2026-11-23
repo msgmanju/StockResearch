@@ -1,0 +1,129 @@
+# Ticker renames: the same company trading under a new symbol.
+# Membership history written with the old ticker is stored under the new one,
+# so one company's prices and membership stay together. Add a block per rename.
+# date = first trading day under the new ticker.
+
+[[change]]
+old = "FB"
+new = "META"
+date = 2022-06-09
+
+[[change]]
+old = "BK"
+new = "BNY"
+date = 2026-05-21
+
+# Symantec -> NortonLifeLock (SEC 8-K, Nov 4 2019: trades as NLOK from Nov 5, 2019)
+[[change]]
+old = "SYMC"
+new = "NLOK"
+date = 2019-11-05
+
+# NortonLifeLock -> Gen Digital (trades as GEN from Nov 8, 2022)
+[[change]]
+old = "NLOK"
+new = "GEN"
+date = 2022-11-08
+
+# Ctrip.com -> Trip.com Group (OCC memo: TCOM from Nov 5, 2019)
+[[change]]
+old = "CTRP"
+new = "TCOM"
+date = 2019-11-05
+
+# Fiserv: NYSE "FI" -> back to Nasdaq as "FISV" (10-K 2025: transferred Nov 11, 2025)
+[[change]]
+old = "FI"
+new = "FISV"
+date = 2025-11-11
+
+# Under Armour (8-K Nov 28 2016; effective start of trading Dec 7, 2016):
+# Class A "UA" -> "UAA", Class C "UA.C" -> "UA". Wikipedia writes the 2016 Class C add as UA-C.
+[[change]]
+old = "UA"
+new = "UAA"
+date = 2016-12-07
+
+[[change]]
+old = "UA-C"
+new = "UA"
+date = 2016-12-07
+
+# Everest Re Group -> Everest Group (press release May 18 2023: NYSE "EG" from July 10, 2023)
+[[change]]
+old = "RE"
+new = "EG"
+date = 2023-07-10
+
+# FleetCor -> Corpay (8-K Mar 7 2024: NYSE "CPAY" from March 25, 2024; new CUSIP 219948106)
+[[change]]
+old = "FLT"
+new = "CPAY"
+date = 2024-03-25
+
+# EchoStar (press release June 22 2026: Nasdaq "ECHO" from June 24, 2026; CUSIP unchanged)
+[[change]]
+old = "SATS"
+new = "ECHO"
+date = 2026-06-24
+
+# ---- Added Nov 16 2026 (price coverage review): companies that kept trading under a new ticker
+# Quintiles IMS -> IQVIA (8-K Nov 7 2017: trades as IQV from Nov 15, 2017)
+[[change]]
+old = "Q"
+new = "IQV"
+date = 2017-11-15
+
+# Arconic Inc. renamed Howmet Aerospace at the Apr 1 2020 separation (10-K 2020); the new Arconic Corp took "ARNC"
+[[change]]
+old = "ARNC"
+new = "HWM"
+date = 2020-04-01
+
+# Willis Towers Watson (8-K Jan 7 2022: Nasdaq "WTW" from the open on Jan 10, 2022)
+[[change]]
+old = "WLTW"
+new = "WTW"
+date = 2022-01-10
+
+# HollyFrontier -> HF Sinclair (8-K12B Mar 14 2022: "DINO" from the start of trading Mar 15, 2022)
+[[change]]
+old = "HFC"
+new = "DINO"
+date = 2022-03-15
+
+# Alliance Data Systems -> Bread Financial (8-K Mar 24 2022: NYSE "BFH" from Apr 4, 2022; CUSIP unchanged)
+[[change]]
+old = "ADS"
+new = "BFH"
+date = 2022-04-04
+
+# Discovery Series A -> Warner Bros. Discovery (WBD 10-K 2022: WBD began trading Apr 11, 2022)
+[[change]]
+old = "DISCA"
+new = "WBD"
+date = 2022-04-11
+
+# Fortune Brands Home & Security -> Fortune Brands Innovations (8-K Dec 15 2022: NYSE "FBIN" from Dec 15, 2022)
+[[change]]
+old = "FBHS"
+new = "FBIN"
+date = 2022-12-15
+
+# Ceridian -> Dayforce (8-K Jan 31 2024: NYSE "DAY" from Feb 1, 2024)
+[[change]]
+old = "CDAY"
+new = "DAY"
+date = 2024-02-01
+
+# Gap Inc. (company release Aug 8 2024: NYSE "GAP" from Aug 22, 2024; CUSIP unchanged)
+[[change]]
+old = "GPS"
+new = "GAP"
+date = 2024-08-22
+
+# Qurate Retail -> QVC Group (8-K Feb 2025: Nasdaq "QVCGA" from the open Feb 24, 2025)
+[[change]]
+old = "QRTEA"
+new = "QVCGA"
+date = 2025-02-24

@@ -1,0 +1,51 @@
+# Share counts for market cap (src/calculate/market_cap_history.py) - REVIEWED LIST, edit only with a source.
+#
+# SEC reports share counts in the company's ORDINARY shares. For a foreign company that trades in the US as an
+# ADS (American depositary share), one ADS can stand for several ordinary shares, so price x SEC shares would be
+# wrong. For the tickers below:
+#     shares on today's ADS basis = SEC ordinary shares x subdivision factor (filings before the date)
+#                                   / ordinary_per_listed (ordinary shares per ADS TODAY)
+# and the price history's "splits" (ADS ratio changes) are NOT applied to the SEC counts.
+# Every other ticker: SEC shares are in the listed shares; stock splits after the filing are applied.
+
+[[ticker]]
+ticker = "BIDU"
+ordinary_per_listed = 8              # 1 ADS = 8 Class A ordinary shares since Mar 1, 2021
+subdivisions = [["2021-03-01", 80]]  # 1-to-80 share subdivision; older filings counted pre-subdivision shares
+source = "Baidu 6-K Jan 2021 and 20-F FY2021 (SEC): ratio 10 ADS = 1 share changed to 1 ADS = 8 shares"
+
+[[ticker]]
+ticker = "TCOM"
+ordinary_per_listed = 1              # 1 ADS = 1 ordinary share since Mar 18, 2021
+subdivisions = [["2021-03-18", 8]]   # 1-to-8 subdivision; before it 8 ADS = 1 ordinary share
+source = "Trip.com 6-K Mar 2021 and 20-F FY2021 (SEC); BNY Mellon notice to Nasdaq Mar 10, 2021"
+
+[[ticker]]
+ticker = "NTES"
+ordinary_per_listed = 5              # 1 ADS = 5 ordinary shares since Oct 1, 2020 (was 25; price history has it as a 5:1 split)
+subdivisions = []
+source = "NetEase ADS ratio change press release Sep 18, 2020; BNY Mellon notice to Nasdaq"
+
+[[ticker]]
+ticker = "JD"
+ordinary_per_listed = 2              # 1 ADS = 2 Class A ordinary shares (since the 2014 IPO)
+subdivisions = []
+source = "JD.com F-1/424B4 2014 and F-3ASR 2020 (SEC)"
+
+[[ticker]]
+ticker = "PDD"
+ordinary_per_listed = 4              # 1 ADS = 4 Class A ordinary shares (since the 2018 IPO)
+subdivisions = []
+source = "PDD Holdings 20-F cover page; investor FAQ"
+
+[[ticker]]
+ticker = "VOD"
+ordinary_per_listed = 10             # 1 ADS = 10 ordinary shares
+subdivisions = []
+source = "Vodafone ADR receipt (424B3) and 20-F cover page (SEC)"
+
+[[ticker]]
+ticker = "AZN"
+ordinary_per_listed = 1              # today's price basis: 1 US share = 1 ordinary share (Feb 2026 change, in the
+subdivisions = []                    # price history as a 0.5 split; before it 2 ADS = 1 ordinary share since Jul 2015)
+source = "AstraZeneca 6-K Jun/Jul 2015 (ratio 1:1 -> 2 ADS : 1 share); price history split 0.5 on 2026-02-02"

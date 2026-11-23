@@ -1,0 +1,241 @@
+# Manual SEC company numbers (CIK) for stocks the automatic matching gets wrong or can't find.
+# Look a company up at https://www.sec.gov/edgar/searchedgar/companysearch and add:
+#
+# [[cik]]
+# ticker = "XYZ"
+# cik = 1234567
+# note = "why"
+#
+# Several entries for one ticker = the company changed SEC number (holding-company reorganization,
+# merger); list them oldest first - each is used from its first periodic report on.
+# no_sec_data = true: the company never filed financial statements with the SEC (e.g. banks that
+# filed with the FDIC instead).
+
+# ---- wrong company matched by name (Nov 2026 review)
+[[cik]]
+ticker = "TGT"
+cik = 27419
+note = "Target Corporation; name matching picked Target Group Inc. (CIK 1586554)"
+
+[[cik]]
+ticker = "CDW"
+cik = 1402057
+note = "CDW Corporation; name matching picked WESCO International (CIK 929008)"
+
+[[cik]]
+ticker = "VIAB"
+cik = 1339947
+note = "Viacom Inc. (2006-2019); name matching picked CBS (CIK 813828, the pre-2006 Viacom)"
+
+[[cik]]
+ticker = "TFCF"
+cik = 1308161
+note = "Twenty-First Century Fox; name matching picked FedNat (formerly 21st Century Holding)"
+
+[[cik]]
+ticker = "TFCFA"
+cik = 1308161
+note = "Twenty-First Century Fox"
+
+[[cik]]
+ticker = "DNB"
+cik = 1115222
+note = "Dun & Bradstreet (2000-2019); name matching picked Moody's (the pre-2000 Dun & Bradstreet)"
+
+[[cik]]
+ticker = "ADT"
+cik = 1546640
+note = "The ADT Corporation (2012-2016); name matching picked Tyco (once ADT Ltd)"
+
+[[cik]]
+ticker = "LMCA"
+cik = 1560385
+note = "Liberty Media Corporation (2013-); name matching picked the older Liberty Media (now QVC Group)"
+
+[[cik]]
+ticker = "LMCK"
+cik = 1560385
+note = "Liberty Media Corporation"
+
+[[cik]]
+ticker = "BATRA"
+cik = 1560385
+note = "Braves tracking stock of Liberty Media Corporation"
+
+[[cik]]
+ticker = "BATRK"
+cik = 1560385
+note = "Braves tracking stock of Liberty Media Corporation"
+
+# ---- not found by name
+[[cik]]
+ticker = "DD-OLD"
+cik = 30554
+note = "E. I. du Pont de Nemours and Company (SEC name 'DU PONT E I DE NEMOURS & CO', now EIDP)"
+
+[[cik]]
+ticker = "DWDP"
+cik = 1666700
+note = "DowDuPont Inc. (now DuPont de Nemours)"
+
+[[cik]]
+ticker = "HOT"
+cik = 316206
+note = "Starwood Hotels & Resorts Worldwide"
+
+[[cik]]
+ticker = "TSS"
+cik = 721683
+note = "Total System Services (TSYS)"
+
+[[cik]]
+ticker = "BCR"
+cik = 9892
+note = "C. R. Bard"
+
+[[cik]]
+ticker = "CMCSK"
+cik = 1166691
+note = "Comcast Class K shares"
+
+[[cik]]
+ticker = "LILA"
+cik = 1712184
+note = "Liberty Latin America (split from Liberty Global Dec 2017; before that a tracking stock with no own filings)"
+
+[[cik]]
+ticker = "LILAK"
+cik = 1712184
+note = "Liberty Latin America"
+
+[[cik]]
+ticker = "FRC"
+no_sec_data = true
+note = "First Republic Bank filed its reports with the FDIC, not the SEC"
+
+[[cik]]
+ticker = "SBNY"
+no_sec_data = true
+note = "Signature Bank filed its reports with the FDIC, not the SEC"
+
+# ---- company changed SEC number (oldest first)
+[[cik]]
+ticker = "XOM"
+cik = 34088
+note = "Exxon Mobil Corporation"
+[[cik]]
+ticker = "XOM"
+cik = 2115436
+note = "ExxonMobil Holdings Corporation (new holding company)"
+
+[[cik]]
+ticker = "BLK"
+cik = 1364742
+note = "BlackRock, Inc. until the Oct 2024 holding-company reorganization (now BlackRock Finance)"
+[[cik]]
+ticker = "BLK"
+cik = 2012383
+note = "BlackRock, Inc. (new holding company)"
+
+[[cik]]
+ticker = "LIN"
+cik = 884905
+note = "Praxair (the stock became Linde plc in Oct 2018)"
+[[cik]]
+ticker = "LIN"
+cik = 1707925
+note = "Linde plc"
+
+[[cik]]
+ticker = "SKYD"
+cik = 813828
+note = "CBS / ViacomCBS / Paramount Global"
+[[cik]]
+ticker = "SKYD"
+cik = 2041610
+note = "Paramount Skydance (Aug 2025)"
+
+[[cik]]
+ticker = "DINO"
+cik = 48039
+note = "HollyFrontier"
+[[cik]]
+ticker = "DINO"
+cik = 1915657
+note = "HF Sinclair (Mar 2022)"
+
+[[cik]]
+ticker = "CI"
+cik = 701221
+note = "Cigna Corporation until the Dec 2018 Express Scripts merger"
+[[cik]]
+ticker = "CI"
+cik = 1739940
+note = "The Cigna Group"
+
+[[cik]]
+ticker = "DIS"
+cik = 1001039
+note = "The Walt Disney Company until the Mar 2019 Fox deal (now TWDC Enterprises 18)"
+[[cik]]
+ticker = "DIS"
+cik = 1744489
+note = "The Walt Disney Company (new holding company)"
+
+[[cik]]
+ticker = "APA"
+cik = 6769
+note = "Apache Corporation until Mar 2021"
+[[cik]]
+ticker = "APA"
+cik = 1841666
+note = "APA Corporation"
+
+[[cik]]
+ticker = "BG"
+cik = 1144519
+note = "Bunge Limited until Nov 2023"
+[[cik]]
+ticker = "BG"
+cik = 1996862
+note = "Bunge Global SA"
+
+[[cik]]
+ticker = "MRVL"
+cik = 1058057
+note = "Marvell Technology Group until Apr 2021"
+[[cik]]
+ticker = "MRVL"
+cik = 1835632
+note = "Marvell Technology, Inc."
+
+[[cik]]
+ticker = "AVGO"
+cik = 1441634
+note = "Avago Technologies"
+[[cik]]
+ticker = "AVGO"
+cik = 1649338
+note = "Broadcom Limited (Feb 2016)"
+[[cik]]
+ticker = "AVGO"
+cik = 1730168
+note = "Broadcom Inc. (Apr 2018)"
+
+[[cik]]
+ticker = "GOOG"
+cik = 1288776
+note = "Google Inc. until Alphabet was formed (Oct 2015)"
+[[cik]]
+ticker = "GOOG"
+cik = 1652044
+note = "Alphabet Inc."
+
+[[cik]]
+ticker = "GOOGL"
+cik = 1288776
+note = "Google Inc. until Alphabet was formed (Oct 2015)"
+[[cik]]
+ticker = "GOOGL"
+cik = 1652044
+note = "Alphabet Inc."
