@@ -7,13 +7,62 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 import streamlit as st  # noqa: E402
-from src.common import FUND_DB, TECH_DB, connect, run  # noqa: E402
+from src.common import FUND_DB, TECH_DB, DATA_DIR, connect, run  # noqa: E402
 from src.strategy import engine as en  # noqa: E402
 from src import membership as mb  # noqa: E402
 
 
+def _ensure_databases():
+    """Ensure databases exist. On Streamlit Cloud, download from GitHub Release if missing."""
+    if TECH_DB.exists() and FUND_DB.exists():
+        return
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    import json, urllib.request, zipfile
+    
+    local_bundle = ROOT / "data_bundle.zip"
+    if local_bundle.exists():
+        with st.spinner("Extracting local database bundle..."):
+            with zipfile.ZipFile(local_bundle, "r") as z:
+                z.extractall(DATA_DIR)
+        return
+
+    token = st.secrets.get("GITHUB_TOKEN", "")
+    release_url = "https://api.github.com/repos/msgmanju/StockResearch/releases/tags/v1.0.0"
+    with st.spinner("Downloading database bundle from GitHub (first launch only, ~15-20s)..."):
+        try:
+            req = urllib.request.Request(release_url)
+            if token:
+                req.add_header("Authorization", f"Bearer {token}")
+            req.add_header("User-Agent", "Streamlit-App")
+            with urllib.request.urlopen(req) as resp:
+                data = json.loads(resp.read().decode())
+            asset_url = None
+            for a in data.get("assets", []):
+                if a.get("name") == "data_bundle.zip":
+                    asset_url = a.get("url")
+                    break
+            if not asset_url:
+                st.error("data_bundle.zip asset not found in GitHub release v1.0.0. Please upload it to your repo release.")
+                st.stop()
+            down_req = urllib.request.Request(asset_url)
+            if token:
+                down_req.add_header("Authorization", f"Bearer {token}")
+            down_req.add_header("Accept", "application/octet-stream")
+            down_req.add_header("User-Agent", "Streamlit-App")
+            target_zip = DATA_DIR / "temp_bundle.zip"
+            with urllib.request.urlopen(down_req) as resp, open(target_zip, "wb") as out_f:
+                out_f.write(resp.read())
+            with zipfile.ZipFile(target_zip, "r") as z:
+                z.extractall(DATA_DIR)
+            target_zip.unlink(missing_ok=True)
+        except Exception as e:
+            st.error(f"Error downloading database: {e}")
+            st.stop()
+
+
 def check_index_built(universe):
     """Warn (and return False) when an index in the chosen universe has no membership history yet."""
+    _ensure_databases()
     names = mb.index_names(universe)
     have = {r[0] for r in run(tech(), "SELECT DISTINCT index_name FROM index_membership")}
     missing = [n for n in names if n not in have]
@@ -25,11 +74,13 @@ def check_index_built(universe):
 
 @st.cache_resource
 def _tech_base():
+    _ensure_databases()
     return connect(TECH_DB, read_only=True)
 
 
 @st.cache_resource
 def _fund_base():
+    _ensure_databases()
     return connect(FUND_DB, read_only=True)
 
 
