@@ -19,7 +19,7 @@ NS = {"n": "http://www.sec.gov/edgar/nport"}
 def _headers():
     email = (SETTINGS.get("edgar") or {}).get("contact_email", "").strip()
     if not email:
-        raise ValueError("SEC contact email missing: config/settings.toml -> [edgar] contact_email")
+        raise ValueError("SEC contact email missing: config/secrets.toml -> [edgar] contact_email")
     return {"User-Agent": f"StockResearch personal research {email}", "Accept-Encoding": "gzip, deflate"}
 
 

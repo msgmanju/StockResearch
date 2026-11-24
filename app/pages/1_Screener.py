@@ -125,7 +125,7 @@ st.divider()
 # ------------------------------------------------------------------ market at a glance
 from src import market_overview as mo  # noqa: E402
 
-with st.expander("Market at a glance - QQQ vs its 200-day average and the major indexes", expanded=False):
+with st.expander("Market at a glance - QQQ vs its 200-day average and the major indexes", expanded=True):
     mq = None
     if live:
         mq = {t: x for t, x in ui.live_quotes(tuple(mo.INDEX_ETFS)).items() if x.get("day") == today_live}

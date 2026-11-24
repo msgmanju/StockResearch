@@ -18,6 +18,11 @@ if _SECRETS_FILE.exists():
 else:
     SECRETS = {}
 
+# private values live in secrets.toml (never uploaded) and override settings.toml - e.g. [edgar] contact_email
+_edgar = SECRETS.get("edgar") or {}
+if _edgar.get("contact_email"):
+    SETTINGS.setdefault("edgar", {})["contact_email"] = _edgar["contact_email"]
+
 
 def path(key: str) -> Path:
     return ROOT / SETTINGS["paths"][key]

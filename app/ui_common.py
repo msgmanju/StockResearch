@@ -42,89 +42,87 @@ def _ensure_databases():
                     z.extractall(DATA_DIR)
                 target_zip.unlink(missing_ok=True)
                 if TECH_DB.exists() and FUND_DB.exists():
-                    st.success("✅ Database initialized successfully!")
-                    st.rerun()
-                    return
+                    return                                 # done (no st.rerun here: it is swallowed by the except)
     except Exception:
         pass
 
-        # 2. If private repo, require GITHUB_TOKEN from secrets
-        token = ""
-        try:
-            token = st.secrets.get("GITHUB_TOKEN", "")
-        except Exception:
-            pass
+    # 2. If private repo, require GITHUB_TOKEN from secrets
+    token = ""
+    try:
+        token = st.secrets.get("GITHUB_TOKEN", "")
+    except Exception:
+        pass
 
-        if not token:
-            st.error(
-                "### 🔑 GitHub Token Required\n\n"
-                "Your repository is private, so Streamlit Cloud needs permission to download the database bundle.\n\n"
-                "**How to fix in 30 seconds:**\n"
-                "1. Click the **`⋮` (three dots)** menu in the top-right corner of this page.\n"
-                "2. Click **Settings** ➔ **Secrets**.\n"
-                "3. Paste the following and click **Save**:\n\n"
-                "```toml\n"
-                "GITHUB_TOKEN = \"ghp_your_token_from_earlier\"\n"
-                "```\n\n"
-                "*(Alternatively, go to your GitHub repo settings and change visibility to Public)*."
-            )
-            st.stop()
+    if not token:
+        st.error(
+            "### 🔑 GitHub Token Required\n\n"
+            "Your repository is private, so Streamlit Cloud needs permission to download the database bundle.\n\n"
+            "**How to fix in 30 seconds:**\n"
+            "1. Click the **`⋮` (three dots)** menu in the top-right corner of this page.\n"
+            "2. Click **Settings** ➔ **Secrets**.\n"
+            "3. Paste the following and click **Save**:\n\n"
+            "```toml\n"
+            "GITHUB_TOKEN = \"ghp_your_token_from_earlier\"\n"
+            "```\n\n"
+            "*(Alternatively, go to your GitHub repo settings and change visibility to Public)*."
+        )
+        st.stop()
 
-        token = str(token).strip().strip("'\"")
-        headers = {
-            "Authorization": f"token {token}",
-            "Accept": "application/vnd.github+json",
-            "User-Agent": "Streamlit-App"
-        }
-        
-        release_api = "https://api.github.com/repos/msgmanju/StockResearch/releases/tags/v1.0.0"
-        try:
-            res = requests.get(release_api, headers=headers, timeout=20)
-        except Exception as e:
-            st.error(f"Network error connecting to GitHub: {e}")
-            st.stop()
+    token = str(token).strip().strip("'\"")
+    headers = {
+        "Authorization": f"token {token}",
+        "Accept": "application/vnd.github+json",
+        "User-Agent": "Streamlit-App"
+    }
+    
+    release_api = "https://api.github.com/repos/msgmanju/StockResearch/releases/tags/v1.0.0"
+    try:
+        res = requests.get(release_api, headers=headers, timeout=20)
+    except Exception as e:
+        st.error(f"Network error connecting to GitHub: {e}")
+        st.stop()
 
-        if res.status_code != 200:
-            msg = res.json().get("message", res.text) if res.headers.get("content-type", "").startswith("application/json") else res.text
-            st.error(f"GitHub API Error ({res.status_code}): {msg}. "
-                     "Please ensure your GITHUB_TOKEN has 'repo' scope and release 'v1.0.0' exists.")
-            st.stop()
+    if res.status_code != 200:
+        msg = res.json().get("message", res.text) if res.headers.get("content-type", "").startswith("application/json") else res.text
+        st.error(f"GitHub API Error ({res.status_code}): {msg}. "
+                 "Please ensure your GITHUB_TOKEN has 'repo' scope and release 'v1.0.0' exists.")
+        st.stop()
 
-        assets = res.json().get("assets", [])
-        asset_url = None
-        for a in assets:
-            if a.get("name") == "data_bundle.zip":
-                asset_url = a.get("url")
-                break
+    assets = res.json().get("assets", [])
+    asset_url = None
+    for a in assets:
+        if a.get("name") == "data_bundle.zip":
+            asset_url = a.get("url")
+            break
 
-        if not asset_url:
-            st.error("Release 'v1.0.0' was found, but `data_bundle.zip` is not attached to it yet!\n\n"
-                     "Please go to: https://github.com/msgmanju/StockResearch/releases/tag/v1.0.0 and drag `data_bundle.zip` into the release.")
-            st.stop()
+    if not asset_url:
+        st.error("Release 'v1.0.0' was found, but `data_bundle.zip` is not attached to it yet!\n\n"
+                 "Please go to: https://github.com/msgmanju/StockResearch/releases/tag/v1.0.0 and drag `data_bundle.zip` into the release.")
+        st.stop()
 
-        down_headers = {
-            "Authorization": f"token {token}",
-            "Accept": "application/octet-stream",
-            "User-Agent": "Streamlit-App"
-        }
-        try:
-            down_res = requests.get(asset_url, headers=down_headers, stream=True, timeout=60)
-        except Exception as e:
-            st.error(f"Error downloading asset: {e}")
-            st.stop()
+    down_headers = {
+        "Authorization": f"token {token}",
+        "Accept": "application/octet-stream",
+        "User-Agent": "Streamlit-App"
+    }
+    try:
+        down_res = requests.get(asset_url, headers=down_headers, stream=True, timeout=60)
+    except Exception as e:
+        st.error(f"Error downloading asset: {e}")
+        st.stop()
 
-        if down_res.status_code != 200:
-            st.error(f"Asset Download Error ({down_res.status_code}).")
-            st.stop()
+    if down_res.status_code != 200:
+        st.error(f"Asset Download Error ({down_res.status_code}).")
+        st.stop()
 
-        with open(target_zip, "wb") as f:
-            for chunk in down_res.iter_content(chunk_size=1024 * 1024):
-                if chunk:
-                    f.write(chunk)
+    with open(target_zip, "wb") as f:
+        for chunk in down_res.iter_content(chunk_size=1024 * 1024):
+            if chunk:
+                f.write(chunk)
 
-        with zipfile.ZipFile(target_zip, "r") as z:
-            z.extractall(DATA_DIR)
-        target_zip.unlink(missing_ok=True)
+    with zipfile.ZipFile(target_zip, "r") as z:
+        z.extractall(DATA_DIR)
+    target_zip.unlink(missing_ok=True)
 
 
 def check_index_built(universe):

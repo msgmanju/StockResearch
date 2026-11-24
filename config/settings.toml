@@ -28,7 +28,7 @@ day_complete_hour = 17
 
 [edgar]
 # SEC asks for a contact email in every request. Fill in before step 5.
-contact_email = "msg_manju@yahoo.com"
+contact_email = ""   # set in config/secrets.toml -> [edgar] contact_email (not uploaded)
 
 [audit]
 # Independent price sources used only for checking Yahoo.
